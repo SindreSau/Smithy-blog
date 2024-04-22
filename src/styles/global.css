@@ -45,6 +45,7 @@ body {
   @apply h-full w-full antialiased;
   @apply bg-white dark:bg-black;
   @apply text-black/75 dark:text-white/75;
+  @apply text-lg;
 }
 
 body {
