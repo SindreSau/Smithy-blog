@@ -1,42 +1,36 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import { SITE, SOCIALS } from '@consts';
+import { SITE } from '@consts';
 import { Image } from 'astro:assets';
-// @ts-ignore
-import backgroundPc from '../assets/images/pc_bg.JPG';
 
-const stack = [
-    {
-        text: 'Astro',
-        icon: 'astro',
-        href: 'https://astro.build',
-    },
-    {
-        text: 'Javascript',
-        icon: 'javascript',
-        href: 'https://www.javascript.com',
-    },
-    {
-        text: 'Typescript',
-        icon: 'typescript',
-        href: 'https://www.typescriptlang.org',
-    },
-    {
-        text: 'Tailwind',
-        icon: 'tailwind',
-        href: 'https://tailwindcss.com',
-    },
-];
+// @ts-ignore
+import background_image from '../assets/images/pc_bg.JPG';
+// @ts-ignore
+import background_image_mobile from '../assets/images/mobile_bg.JPG';
+
+// @ts-ignore
+import smie from '../assets/images/smed.png';
+
+import bilde_venstre from '../assets/images/index_left.jpeg';
+import bilde_midten from '../assets/images/index_center.jpeg';
+import bilde_hoyre from '../assets/images/index_right.jpg';
 ---
 
 <PageLayout title='Hjem' description={SITE.DESCRIPTION}>
     <!-- BACKGROUND IMAGE -->
     <Image
-        class='animate fixed filter brightness-[50%] w-full h-full object-cover'
-        src={backgroundPc}
+        class='animate fixed filter brightness-[50%] w-full h-full object-cover hidden md:block'
+        src={background_image}
         alt={'Background image'}
         width={4928}
         height={3264}
+    />
+    <Image
+        class='animate fixed filter brightness-[50%] w-full h-full object-cover md:hidden'
+        src={background_image_mobile}
+        alt={'Background image'}
+        width={3264}
+        height={4928}
     />
 
     <!-- HERO -->
@@ -48,71 +42,94 @@ const stack = [
         </div>
     </section>
 
-    <div class='relative bg-white dark:bg-black'>
-        <div class='mx-auto max-w-screen-sm p-5 space-y-24 pb-16'>
+    <!-- Main section -->
+    <div class='relative bg-white dark:bg-black md:pt-24 pt-6'>
+        <div class='mx-auto flex flex-col md:gap-24 gap-8 items-center max-w-screen-lg p-5'>
             <!-- About Section -->
-            <section class='animate'>
-                <article>
+            <section class='flex md:flex-row flex-col-reverse gap-4 md:gap-10'>
+                <div>
+                    <h2 class='text-xl font-semibold'>Velkommen til Bogstad Gård smie</h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur magni eos illo eveniet
-                        asperiores, officiis quo corrupti atque voluptates, ab quis repellendus, voluptatum excepturi
-                        optio suscipit voluptas illum fugiat porro. Veritatis, voluptas et aliquid illum, nihil eaque
-                        similique, consectetur sequi magnam quod aspernatur debitis impedit facilis perspiciatis beatae
-                        assumenda quasi deserunt laborum incidunt odio pariatur autem ipsa exercitationem sit.
-                        Repudiandae! Quia corporis temporibus expedita, vero laboriosam adipisci nulla nam blanditiis
-                        magnam mollitia ratione sed porro. Iure eveniet accusamus voluptas facilis optio iusto, quo, ex
-                        nulla voluptatem sed illum recusandae aspernatur! Temporibus dicta sunt, ratione laudantium
-                        ullam, eveniet maiores nihil est repellendus esse repellat beatae non voluptatibus atque quo
-                        debitis ducimus cupiditate maxime aperiam mollitia? Distinctio tempore sunt et ab officiis. Aut
-                        sequi quo reprehenderit eos aperiam architecto excepturi natus deleniti, adipisci eligendi quasi
-                        numquam molestiae odio quas libero labore quos, impedit officiis quibusdam nulla quisquam. Rem
-                        fuga architecto est distinctio? Quae consequuntur perspiciatis non, in doloribus corporis optio
-                        quas dicta fuga possimus veniam. Aspernatur repellendus consectetur reiciendis quod vitae rerum
-                        illum laborum ducimus numquam, nulla doloribus nam, dolores eius eos? Autem, neque. Voluptatibus
-                        magni eaque omnis ipsam impedit ea odit aut? Aliquam facilis architecto dignissimos sequi fuga
-                        sint ea, repellendus quisquam! Laudantium molestiae aliquid voluptatibus doloribus saepe illum
-                        sint tempore. Alias iusto ex aliquid distinctio officiis nulla dolor voluptates corporis
-                        corrupti placeat illum nostrum ad sapiente itaque quisquam molestiae enim cum, harum eum. Nam
-                        ducimus laboriosam delectus harum cum deleniti! Accusamus incidunt vero quia voluptatem. Alias
-                        ipsa hic praesentium quasi neque laudantium eaque, tempore, itaque perspiciatis asperiores
-                        mollitia possimus magnam ea consequatur iusto velit similique voluptates recusandae expedita
-                        placeat necessitatibus! Accusamus assumenda tenetur molestiae ex quisquam ipsa aliquam
-                        similique. Repellendus dolorum porro non soluta aperiam eaque saepe, facilis sapiente quia.
-                        Ipsa, adipisci! Voluptatum, ipsam ullam corrupti consequatur voluptates nesciunt quis. Eum
-                        quisquam odio laboriosam dolorum vero sequi voluptas sunt tenetur cumque unde harum et facilis
-                        perferendis esse dolores, quae laborum quos. Facilis, nulla obcaecati? Explicabo unde eius
-                        temporibus ad in! Sit repellendus dolorum laudantium quibusdam, sint iusto at error nobis
-                        voluptate. Nihil delectus error illum, rem quaerat eum assumenda reiciendis doloremque, aliquid
-                        cum voluptatibus quidem aut iure, temporibus quisquam eaque.
+                        Vi er en smie som holder til på Bogstad Gård i Oslo. Denne teksten må gjerne fylles ut
+                        ytterligere med mer informasjon om gården og smien.
                     </p>
-                </article>
+                </div>
+                <Image class='w-72 rounded-md' src={smie} alt={'Smie'} width={1920} height={1080} />
             </section>
 
-            <!-- Contact Section -->
-            <section class='animate'>
+            <!-- Images section -->
+            <section>
+                <div class='grid grid-cols-1 md:grid-cols-3 md:gap-8 gap-4'>
+                    <Image
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        src={bilde_venstre}
+                        alt={'Image 1'}
+                        width={1080}
+                        height={1618}
+                    />
+                    <Image
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        src={bilde_midten}
+                        alt={'Image 2'}
+                        width={957}
+                        height={1388}
+                    />
+                    <Image
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        src={bilde_hoyre}
+                        alt={'Image 3'}
+                        width={2777}
+                        height={4500}
+                    />
+                </div>
+                <div
+                    class='max-w-screen-md mx-auto flex md:flex-row flex-col items-center justify-center md:gap-8 md:mt-6 pt-2'>
+                    <p class='mt-4'>Ta en kikk i galleriet for å se mer.</p>
+                    <a href='/galleri'>
+                        <button
+                            class='md:mt-4 mt-2 bg-black text-white rounded-md px-4 py-1.5 hover:bg-neutral-950 border border-neutral-600 text-nowrap'>
+                            Til galleri</button
+                        >
+                    </a>
+                </div>
+            </section>
+
+            <!-- Contact section -->
+            <section class='flex justify-center'>
                 <div>
-                    <p class='font-bold text-xl text-black dark:text-white'>Kontakt meg gjerne!</p>
-                    <p>Kontakt meg gjerne på mail og følg meg på Instagram for mer innhold!</p>
-                    <div class='grid grid-cols-4 gap-y-2 mt-4 auto-cols-min'>
-                        {
-                            SOCIALS.map((social) => (
-                                <>
-                                    <div class='col-span-1 flex items-center gap-1'>
-                                        <span class='whitespace-nowrap truncate'>{social.NAME}</span>
-                                    </div>
-                                    <div class='col-span-3 truncate'>
-                                        <a
-                                            href={social.HREF}
-                                            target='_blank'
-                                            class='w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend'>
-                                            <span class='text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend'>
-                                                {social.TEXT}
-                                            </span>
-                                        </a>
-                                    </div>
-                                </>
-                            ))
-                        }
+                    <p class='font-bold text-xl'>Kontakt:</p>
+                    <p>Ta gjerne kontakt for oppdrag og spesialbestillinger</p>
+                    <div class='grid grid-cols-4 gap-2 mt-4 auto-cols-min'>
+                        <!-- Mail -->
+                        <div class='col-span-1 flex items-center gap-1'>
+                            <span class='whitespace-nowrap truncate'>E-mail:</span>
+                        </div>
+                        <div class='col-span-3 truncate'>
+                            <a
+                                href={'mailto:hawk.metaldesigns@gmail.com'}
+                                target='_blank'
+                                class='w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend'>
+                                <span
+                                    class='text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend'>
+                                    hawk.metaldesigns@gmail.com
+                                </span>
+                            </a>
+                        </div>
+                        <!-- Phone -->
+                        <div class='col-span-1 flex items-center gap-1'>
+                            <span class='whitespace nowrap truncate'>Telefon:</span>
+                        </div>
+                        <div class='col-span-3 truncate'>
+                            <a
+                                href={'tel:48241206'}
+                                target='_blank'
+                                class='w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend'>
+                                <span
+                                    class='text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend'>
+                                    48241206
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
