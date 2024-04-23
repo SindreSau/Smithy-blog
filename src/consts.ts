@@ -21,6 +21,10 @@ export const LINKS: Links = [
         HREF: '/',
     },
     {
+        TEXT: 'Galleri',
+        HREF: '/galleri',
+    },
+    {
         TEXT: 'Kontakt',
         HREF: '/kontakt',
     },

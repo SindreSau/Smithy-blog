@@ -1,0 +1,16 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import { SITE } from '@consts';
+import { Image } from 'astro:assets';
+
+// @ts-ignore
+import headshot_image from '../assets/images/headshot_v1.jpeg';
+---
+
+<PageLayout title='Galleri' description={SITE.DESCRIPTION}>
+    <div class='relative bg-white dark:bg-black my-auto mx-auto md:p-0 p-4 pt-8'>
+        <section class='flex lg:flex-row flex-col md:gap-16 gap-8 justify-center items-center max-w-screen-md animate'>
+            <h1>Denne seksjonen kommer ...</h1>
+        </section>
+    </div>
+</PageLayout>

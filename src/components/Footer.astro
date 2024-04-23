@@ -11,7 +11,7 @@ const currentUrl = Astro.url.pathname;
             <Container size='md'>
                 <div class='flex items-center justify-center sm:justify-end'>
                     {
-                        currentUrl !== '/kontakt' && (
+                        currentUrl == '/' && (
                             <button
                                 id='back-to-top'
                                 aria-label='Back to top of page'
