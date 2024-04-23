@@ -25,19 +25,3 @@ export const LINKS: Links = [
         HREF: '/kontakt',
     },
 ];
-
-// Socials
-export const SOCIALS: Socials = [
-    {
-        NAME: 'Email',
-        ICON: 'email',
-        TEXT: 'hawk.metaldesigns@gmail.com',
-        HREF: 'mailto:hawk.metaldesigns@gmail.com',
-    },
-    {
-        NAME: 'Instagram',
-        ICON: 'instagram',
-        TEXT: 'hawk.metaldesigns',
-        HREF: 'https://www.instagram.com/hawk.metaldesigns/',
-    },
-];
