@@ -13,18 +13,23 @@ import Container from '@components/Container.astro';
                 <!-- LOGO GOES HERE -->
                 <a
                     href='/'
-                    class='flex gap-1 text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out'>
+                    class='flex gap-1 text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out md:hidden'>
                     <svg class='size-6 fill-current'>
                         <use href='/brand.svg#brand'></use>
                     </svg>
-                    <!-- <div>
-                        {SITE.TITLE}
-                    </div> -->
                 </a>
             </div>
 
             <div class='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
                 <nav class='hidden md:flex items-center justify-center text-sm gap-1'>
+                    <!-- LOGO -->
+                    <a
+                        href='/'
+                        class='flex gap-1 text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out mr-6 md:block hidden'>
+                        <svg class='size-6 fill-current'>
+                            <use href='/brand.svg#brand'></use>
+                        </svg>
+                    </a>
                     {
                         LINKS.map((LINK) => (
                             <a
