@@ -3,6 +3,8 @@ import PageLayout from '@layouts/PageLayout.astro';
 import { SITE } from '@consts';
 import { Image } from 'astro:assets';
 
+import { Divider } from '@nextui-org/divider';
+
 // @ts-ignore
 import background_image from '../assets/images/pc_bg.JPG';
 // @ts-ignore
@@ -48,14 +50,19 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
             <!-- About Section -->
             <section class='flex md:flex-row flex-col-reverse gap-4 md:gap-10'>
                 <div>
-                    <h2 class='text-xl font-semibold'>Velkommen til Bogstad Gård smie</h2>
+                    <h2 class='md:text-2xl text-xl font-semibold md:mb-8 mb-3'>Velkommen til Bogstad Gård smie</h2>
                     <p>
-                        Vi er en smie som holder til på Bogstad Gård i Oslo. Denne teksten må gjerne fylles ut
-                        ytterligere med mer informasjon om gården og smien.
+                        Håkon Busk er smed på Bogstad Gård og har en Bachelor of Arts i kunstsmiing fra Hereford, School
+                        of Arts and Crafts i England. I arbeidet sitt ønsker han å fremme kvalitet i minimalistisk
+                        moderne design som håndlages på Bogstad Gård. Dette tar form som skulpturer, interiørdesign og
+                        eksteriørdesign som spesialtilpasses i smidd stål. Håkon tar bestillinger der han samarbeider
+                        tett med kunder for å utvikle og skape skreddersydde ideer og produkter til kundens behov.
                     </p>
                 </div>
                 <Image class='w-72 rounded-md' src={smie} alt={'Smie'} width={1920} height={1080} />
             </section>
+
+            <Divider className='opacity-30' />
 
             <!-- Images section -->
             <section>

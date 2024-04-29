@@ -3,6 +3,8 @@ import PageLayout from '@layouts/PageLayout.astro';
 import { SITE } from '@consts';
 import { Image } from 'astro:assets';
 
+import { Divider } from '@nextui-org/divider';
+
 // @ts-ignore
 import headshot_image from '../assets/images/headshot_v1.jpeg';
 ---
@@ -61,5 +63,10 @@ import headshot_image from '../assets/images/headshot_v1.jpeg';
                 />
             </div>
         </section>
+
+        <Divider className='opacity-30 my-6 md:my-12' />
+
+        <!-- Socials -->
+        <section></section>
     </div>
 </PageLayout>
