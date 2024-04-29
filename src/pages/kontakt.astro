@@ -10,7 +10,7 @@ import headshot_image from '../assets/images/headshot_v1.jpeg';
 ---
 
 <PageLayout title='Kontakt' description={SITE.DESCRIPTION}>
-    <div class='relative bg-white dark:bg-black my-auto mx-auto md:p-0 p-4 pt-8'>
+    <div class='relative bg-white dark:bg-black mx-auto md:p-0 p-4 pt-8 md:my-auto mt-5'>
         <section class='flex lg:flex-row flex-col md:gap-16 gap-8 justify-center items-center max-w-screen-md'>
             <!-- Contact section -->
             <div class='animate'>
@@ -64,9 +64,41 @@ import headshot_image from '../assets/images/headshot_v1.jpeg';
             </div>
         </section>
 
-        <Divider className='opacity-30 my-6 md:my-12' />
+        <Divider className='opacity-30 my-6 md:my-10' />
 
         <!-- Socials -->
-        <section></section>
+        <section>
+            <h2 class='font-bold md:text-lg text-black dark:text-white'>
+                Hold deg oppdatert på vår facebook og instagram:
+            </h2>
+            <div>
+                <!-- Instagram -->
+                <div class='flex items-center gap-2'>
+                    <span>Instagram: </span>
+                    <a
+                        href={'https://www.instagram.com/hawk.metaldesigns/'}
+                        target='_blank'
+                        aria-label={`${SITE.TITLE} on Instagram`}
+                        class='group size-10 rounded-full p-2 items-center justify-center hover:bg-black/5 dark:hover:bg-white/20 blend'>
+                        <svg class='size-full fill-current group-hover:fill-black group-hover:dark:fill-white blend'>
+                            <use href={`/social.svg#instagram`}></use>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Facebook -->
+                <div class='flex items-center gap-2'>
+                    <span>Facebook: </span>
+                    <a
+                        href='https://www.facebook.com/kunstsmedBogstadgård'
+                        target='_blank'
+                        aria-label={`${SITE.TITLE} on Facebook`}
+                        class='group size-10 rounded-full p-2 items-center justify-center hover:bg-black/5 dark:hover:bg-white/20 blend'>
+                        <svg class='size-full fill-current group-hover:fill-black group-hover:dark:fill-white blend'>
+                            <use href={`/social.svg#facebook`}></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
 </PageLayout>
