@@ -2,6 +2,8 @@
 import PageLayout from '@layouts/PageLayout.astro';
 import { SITE } from '@consts';
 import { Image } from 'astro:assets';
+import Button from '@components/Button.astro';
+import { Divider } from '@nextui-org/divider';
 
 // @ts-ignore
 import background_image from '../assets/images/pc_bg.JPG';
@@ -24,6 +26,7 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
         alt={'Background image'}
         width={4928}
         height={3264}
+        loading={'eager'}
     />
     <Image
         class='animate fixed filter brightness-[50%] w-full h-full object-cover md:hidden'
@@ -31,6 +34,7 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
         alt={'Background image'}
         width={3264}
         height={4928}
+        loading={'eager'}
     />
 
     <!-- HERO -->
@@ -43,59 +47,73 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
     </section>
 
     <!-- Main section -->
-    <div class='relative bg-white dark:bg-black md:pt-24 pt-6'>
+    <div class='relative bg-white dark:bg-darkness md:pt-24 pt-6'>
         <div class='mx-auto flex flex-col md:gap-24 gap-8 items-center max-w-screen-lg p-5'>
             <!-- About Section -->
             <section class='flex md:flex-row flex-col-reverse gap-4 md:gap-10'>
                 <div>
-                    <h2 class='text-xl font-semibold'>Velkommen til Bogstad Gård smie</h2>
-                    <p>
-                        Vi er en smie som holder til på Bogstad Gård i Oslo. Denne teksten må gjerne fylles ut
-                        ytterligere med mer informasjon om gården og smien.
-                    </p>
+                    <h2 class='md:text-2xl text-xl font-semibold md:mb-8 mb-3'>Velkommen til Bogstad Gård smie</h2>
+                    <div class='flex flex-col gap-1.5'>
+                        <p>
+                            Håkon Busk er smed på Bogstad Gård og har en Bachelor of Arts i kunstsmiing fra Hereford,
+                            School of Arts and Crafts i England.
+                        </p>
+                        <p>
+                            I arbeidet sitt ønsker han å fremme kvalitet i minimalistisk moderne design som håndlages på
+                            Bogstad Gård. Dette tar form som skulpturer, interiørdesign og eksteriørdesign som
+                            spesialtilpasses i smidd stål.
+                        </p>
+                        <p>
+                            Håkon tar bestillinger der han samarbeider tett med kunder for å utvikle og skape
+                            skreddersydde ideer og produkter til kundens behov.
+                        </p>
+                    </div>
                 </div>
-                <Image class='w-72 rounded-md' src={smie} alt={'Smie'} width={1920} height={1080} />
+                <Image class='w-72 rounded-md' src={smie} alt={'Smie'} width={1920} height={1080} loading={'eager'} />
             </section>
+
+            <Divider className='opacity-30' />
 
             <!-- Images section -->
             <section>
                 <div class='grid grid-cols-1 md:grid-cols-3 md:gap-8 gap-4'>
                     <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_venstre}
-                        alt={'Image 1'}
+                        alt={'Skulptur'}
                         width={1080}
                         height={1618}
+                        loading={'lazy'}
                     />
                     <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_midten}
-                        alt={'Image 2'}
+                        alt={'Skulptur'}
                         width={957}
                         height={1388}
+                        loading={'lazy'}
                     />
                     <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_hoyre}
-                        alt={'Image 3'}
+                        alt={'Skulptur'}
                         width={2777}
                         height={4500}
+                        loading={'lazy'}
                     />
                 </div>
                 <div
                     class='max-w-screen-md mx-auto flex md:flex-row flex-col items-center justify-center md:gap-8 md:mt-6 pt-2'>
                     <p class='mt-4'>Ta en kikk i galleriet for å se mer.</p>
+
                     <a href='/galleri'>
-                        <button
-                            class='md:mt-4 mt-2 bg-black text-white rounded-md px-4 py-1.5 hover:bg-neutral-950 border border-neutral-600 text-nowrap'>
-                            Til galleri</button
-                        >
+                        <Button btntext='Til galleri' />
                     </a>
                 </div>
             </section>
 
             <!-- Contact section -->
-            <section class='flex justify-center'>
+            <section class='flex justify-center md:mb-16'>
                 <div>
                     <p class='font-bold text-xl'>Kontakt:</p>
                     <p>Ta gjerne kontakt for oppdrag og spesialbestillinger</p>
