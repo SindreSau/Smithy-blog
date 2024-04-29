@@ -43,7 +43,7 @@ html.dark {
 html,
 body {
     @apply h-full w-full antialiased;
-    @apply bg-white dark:bg-black;
+    @apply bg-white dark:bg-neutral-950;
     @apply text-black/75 dark:text-white/75;
     @apply text-lg;
 }
@@ -53,7 +53,7 @@ body {
 }
 
 main {
-    @apply flex flex-col flex-1 bg-white dark:bg-black;
+    @apply flex flex-col flex-1 bg-white dark:bg-neutral-950;
 }
 
 header {
@@ -136,5 +136,17 @@ article img {
 
     &:link::after {
         width: 100%;
+    }
+}
+
+
+/* Hover effect for images. Zoom in on hover */
+img {
+    transition: transform 0.3s;
+}
+
+.img-zoom {
+    &:hover {
+        transform: scale(1.05);
     }
 }

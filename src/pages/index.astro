@@ -26,6 +26,7 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
         alt={'Background image'}
         width={4928}
         height={3264}
+        loading={'eager'}
     />
     <Image
         class='animate fixed filter brightness-[50%] w-full h-full object-cover md:hidden'
@@ -33,6 +34,7 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
         alt={'Background image'}
         width={3264}
         height={4928}
+        loading={'eager'}
     />
 
     <!-- HERO -->
@@ -67,7 +69,7 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
                         </p>
                     </div>
                 </div>
-                <Image class='w-72 rounded-md' src={smie} alt={'Smie'} width={1920} height={1080} />
+                <Image class='w-72 rounded-md' src={smie} alt={'Smie'} width={1920} height={1080} loading={'eager'} />
             </section>
 
             <Divider className='opacity-30' />
@@ -76,25 +78,28 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
             <section>
                 <div class='grid grid-cols-1 md:grid-cols-3 md:gap-8 gap-4'>
                     <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_venstre}
-                        alt={'Image 1'}
+                        alt={'Skulptur'}
                         width={1080}
                         height={1618}
+                        loading={'lazy'}
                     />
                     <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_midten}
-                        alt={'Image 2'}
+                        alt={'Skulptur'}
                         width={957}
                         height={1388}
+                        loading={'lazy'}
                     />
                     <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem]'
+                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_hoyre}
-                        alt={'Image 3'}
+                        alt={'Skulptur'}
                         width={2777}
                         height={4500}
+                        loading={'lazy'}
                     />
                 </div>
                 <div
@@ -108,7 +113,7 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
             </section>
 
             <!-- Contact section -->
-            <section class='flex justify-center'>
+            <section class='flex justify-center md:mb-16'>
                 <div>
                     <p class='font-bold text-xl'>Kontakt:</p>
                     <p>Ta gjerne kontakt for oppdrag og spesialbestillinger</p>
