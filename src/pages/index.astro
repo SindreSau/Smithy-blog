@@ -16,6 +16,8 @@ import smie from '../assets/images/smed.png';
 import bilde_venstre from '../assets/images/index_left.jpeg';
 import bilde_midten from '../assets/images/index_center.jpeg';
 import bilde_hoyre from '../assets/images/index_right.jpg';
+
+const carouselImages = [bilde_venstre, bilde_midten, bilde_hoyre];
 ---
 
 <PageLayout title='Hjem' description={SITE.DESCRIPTION}>
@@ -44,7 +46,7 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
     <section class='relative h-screen w-full'>
         <div class='animate absolute h-full w-full flex items-center justify-center'>
             <div class='relative w-full h-full flex justify-center'>
-                <h1 class='md:text-6xl sm:text-3xl text-2xl flex md:items-end my-32'>BOGSTAD SMIE</h1>
+                <h1 class='md:text-6xl sm:text-4xl text-3xl flex md:items-end my-32'>BOGSTAD SMIE</h1>
             </div>
         </div>
     </section>
@@ -55,7 +57,7 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
             <!-- About Section -->
             <section class='flex flex-col md:flex-row md:items-start gap-4 md:gap-10'>
                 <div class='w-full md:w-2/3'>
-                    <h2 class='text-xl md:text-2xl font-semibold mb-3 md:mb-8'>Velkommen til smia på Bogstad Gård</h2>
+                    <h2 class='text-2xl md:text-3xl font-semibold mb-3 md:mb-8'>Velkommen til smia på Bogstad Gård</h2>
                     <div class='flex flex-col gap-1.5'>
                         <p>
                             Håkon Busk er smed på Bogstad Gård og har en Bachelor of Arts i kunstsmiing fra Hereford,
@@ -87,31 +89,67 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
 
             <!-- Images section -->
             <section>
-                <div class='grid grid-cols-1 md:grid-cols-3 md:gap-8 gap-4'>
-                    <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
-                        src={bilde_venstre}
-                        alt={'Skulptur'}
-                        widths={[240, 360, 480, 600, 720]}
-                        quality={'mid'}
-                        loading={'eager'}
-                    />
-                    <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
-                        src={bilde_midten}
-                        alt={'Skulptur'}
-                        widths={[240, 360, 480, 600, 720]}
-                        quality={'mid'}
-                        loading={'eager'}
-                    />
-                    <Image
-                        class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
-                        src={bilde_hoyre}
-                        alt={'Skulptur'}
-                        widths={[240, 360, 480, 600, 720]}
-                        quality={'mid'}
-                        loading={'eager'}
-                    />
+                <!-- Carousel for small screens -->
+                <div class='md:hidden relative w-full h-[400px] fade-in-element'>
+                    <div id='carousel' class='w-full h-full relative'>
+                        {
+                            carouselImages.map((img, index) => (
+                                <div
+                                    class={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+                                    <Image
+                                        src={img}
+                                        alt={`Slide ${index + 1}`}
+                                        width={500}
+                                        class='w-full h-full object-cover'
+                                        quality={'mid'}
+                                        loading={'eager'}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <button
+                        id='prevBtn'
+                        class='absolute sm:-left-12 left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full z-20'>
+                        <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke='currentColor'
+                            class='w-6 h-6'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 19l-7-7 7-7'
+                            ></path>
+                        </svg>
+                    </button>
+                    <button
+                        id='nextBtn'
+                        class='absolute sm:-right-12 right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 border p-2 rounded-full z-20'>
+                        <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke='currentColor'
+                            class='w-6 h-6'>
+                            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Grid for larger screens -->
+                <div class='hidden md:grid grid-cols-3 md:gap-8 gap-4'>
+                    {
+                        carouselImages.map((img, index) => (
+                            <Image
+                                class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
+                                src={img}
+                                alt={`Skulptur ${index + 1}`}
+                                widths={[240, 360, 480, 600, 720]}
+                                quality={'high'}
+                                loading={'eager'}
+                            />
+                        ))
+                    }
                 </div>
                 <div
                     class='max-w-screen-md mx-auto flex md:flex-row flex-col items-center justify-center md:gap-8 md:mt-6 pt-2'>
@@ -179,8 +217,8 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
             // Calculate the additional darkness (0 = no additional darkness, 0.5 = fully dark gray)
             const additionalDarkness = Math.min(0.5, (scrollPosition / windowHeight) * darkenFactor);
 
-            // Combine initial darkness (0.5) with additional darkness
-            const totalDarkness = 0.65 + additionalDarkness;
+            // Combine initial darkness (x + additionalDarkness) with additional darkness
+            const totalDarkness = 0.6 + additionalDarkness;
 
             const gradient = `linear-gradient(rgba(8,8,8,${totalDarkness}), rgba(8,8,8,${totalDarkness}))`;
 
@@ -199,5 +237,113 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
 
         // Initial call to set correct darkness on page load
         handleScroll();
+
+        // Carousel logic:
+        function setupCarousel() {
+            const carousel = document.getElementById('carousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slides = carousel ? (Array.from(carousel.children) as HTMLElement[]) : [];
+            let currentIndex = 0;
+            let intervalId: number | null = null;
+
+            function showSlide(index: number) {
+                slides.forEach((slide, i) => {
+                    slide.style.opacity = i === index ? '1' : '0';
+                    slide.style.zIndex = i === index ? '1' : '0';
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            function startAutoSwitch() {
+                if (window.innerWidth < 768 && intervalId === null) {
+                    // Only on mobile screens
+                    intervalId = window.setInterval(nextSlide, 4000);
+                }
+            }
+
+            function stopAutoSwitch() {
+                if (intervalId !== null) {
+                    window.clearInterval(intervalId);
+                    intervalId = null;
+                }
+            }
+
+            prevBtn?.addEventListener('click', () => {
+                prevSlide();
+                stopAutoSwitch();
+                startAutoSwitch();
+            });
+
+            nextBtn?.addEventListener('click', () => {
+                nextSlide();
+                stopAutoSwitch();
+                startAutoSwitch();
+            });
+
+            // Start auto-switching
+            startAutoSwitch();
+
+            // Handle page visibility changes
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopAutoSwitch();
+                } else {
+                    startAutoSwitch();
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                stopAutoSwitch();
+                startAutoSwitch();
+            });
+        }
+
+        function setupFadeInAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, index * 100); // Stagger effect: 100ms delay for each element
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1,
+                }
+            );
+
+            fadeElements.forEach((element) => {
+                observer.observe(element);
+            });
+        }
+
+        function init() {
+            setupCarousel();
+            setupFadeInAnimations();
+        }
+
+        // Run on initial load
+        document.addEventListener('DOMContentLoaded', init);
+
+        // For Astro's view transitions
+        document.addEventListener('astro:page-load', init);
     </script>
 </PageLayout>

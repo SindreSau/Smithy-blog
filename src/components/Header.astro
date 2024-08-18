@@ -41,8 +41,8 @@ import Container from '@components/Container.astro';
                                     'flex items-center justify-center',
                                     'transition-colors duration-300 ease-in-out',
                                     pathname === LINK.HREF || '/' + subpath?.[0] === LINK.HREF
-                                        ? ' text-black dark:text-white underline-link' /* Line for current link */
-                                        : ' hover:text-black dark:hover:text-white hover:underline-link' /* Line on hover */
+                                        ? ' text-black dark:text-white underline-link'
+                                        : ' hover:text-black dark:hover:text-white hover:underline-link'
                                 )}>
                                 {LINK.TEXT}
                             </a>
@@ -51,24 +51,22 @@ import Container from '@components/Container.astro';
                 </nav>
             </div>
 
-            <div class='buttons absolute right-0 top-1/2 -translate-y-1/2 flex gap-1'>
+            <!-- Mobile hamburger button -->
+            <div class='buttons absolute right-0 top-1/2 -translate-y-1/2 flex gap-2'>
                 <button
                     id='header-drawer-button'
                     aria-label={`Toggle drawer open and closed`}
                     class={cn(
                         'flex md:hidden',
-                        'size-9 rounded-full p-2 items-center justify-center',
-                        'bg-transparent hover:bg-black/5 dark:hover:bg-white/20',
-                        'stroke-current hover:stroke-black hover:dark:stroke-white',
-                        'border border-black/10 dark:border-white/25',
-                        'transition-colors duration-300 ease-in-out'
+                        'size-8 rounded-md items-center justify-center',
+                        'bg-transparent md:hover:bg-black/5 md:dark:hover:bg-white/20',
+                        'transition-all duration-300 ease-in-out'
                     )}>
-                    <svg id='drawer-open' class='size-full'>
-                        <use href='/ui.svg#menu'></use>
-                    </svg>
-                    <svg id='drawer-close' class='size-full'>
-                        <use href='/ui.svg#x'></use>
-                    </svg>
+                    <div class='burger-icon'>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </button>
             </div>
         </div>
@@ -76,29 +74,72 @@ import Container from '@components/Container.astro';
 </header>
 
 <style>
-    #header-drawer-button > #drawer-open {
-        @apply block;
+    .burger-icon {
+        width: 25px;
+        height: 15px;
+        position: relative;
+        transform: rotate(0deg);
+        transition: 0.5s ease-in-out;
     }
 
-    #header-drawer-button > #drawer-close {
-        @apply hidden;
+    .burger-icon span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: currentColor;
+        border-radius: 2px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: 0.25s ease-in-out;
     }
 
-    #header-drawer-button.open > #drawer-open {
-        @apply hidden;
+    .burger-icon span:nth-child(1) {
+        top: 0px;
     }
 
-    #header-drawer-button.open > #drawer-close {
-        @apply block;
+    .burger-icon span:nth-child(2) {
+        top: 7px;
+    }
+
+    .burger-icon span:nth-child(3) {
+        top: 14px;
+    }
+
+    #header-drawer-button.open .burger-icon span:nth-child(1) {
+        top: 6px;
+        transform: rotate(135deg);
+    }
+
+    #header-drawer-button.open .burger-icon span:nth-child(2) {
+        opacity: 0;
+        left: 0px;
+    }
+
+    #header-drawer-button.open .burger-icon span:nth-child(3) {
+        top: 6px;
+        transform: rotate(-135deg);
     }
 </style>
 
-<script is:inline>
+<script>
     function toggleDrawer() {
         const drawer = document.getElementById('drawer');
         const drawerButton = document.getElementById('header-drawer-button');
         drawer?.classList.toggle('open');
         drawerButton?.classList.toggle('open');
+
+        if (drawer?.classList.contains('open')) {
+            animateMenuItems();
+        }
+    }
+
+    function animateMenuItems() {
+        const menuItems = document.querySelectorAll('#drawer .menu-item');
+        menuItems.forEach((item, index) => {
+            (item as HTMLElement).style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1}s`;
+        });
     }
 
     function initializeDrawerButton() {
@@ -109,3 +150,20 @@ import Container from '@components/Container.astro';
     document.addEventListener('astro:after-swap', initializeDrawerButton);
     initializeDrawerButton();
 </script>
+
+<style is:global>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    #drawer .menu-item {
+        opacity: 0;
+    }
+</style>
