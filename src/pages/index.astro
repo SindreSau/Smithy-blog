@@ -1,7 +1,7 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import { SITE } from '@consts';
-import { Image } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import Button from '@components/Button.astro';
 import { Divider } from '@nextui-org/divider';
 
@@ -20,21 +20,26 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
 
 <PageLayout title='Hjem' description={SITE.DESCRIPTION}>
     <!-- BACKGROUND IMAGE -->
-    <Image
-        class='animate fixed filter brightness-[50%] w-full h-full object-cover hidden md:block'
-        src={background_image}
-        alt={'Background image'}
-        width={4928}
-        height={3264}
-    />
-    <Image
-        class='animate fixed filter brightness-[50%] w-full h-full object-cover md:hidden'
-        src={background_image_mobile}
-        alt={'Background image'}
-        width={1632}
-        height={2464}
-    />
-
+    <div
+        id='background-desktop'
+        class='animate fixed w-full h-full hidden md:block'
+        style={{
+            backgroundImage: `linear-gradient(rgba(8,8,8,0.5), rgba(8,8,8,0.5)), url(${background_image.src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }}
+        data-bg-url={background_image.src}>
+    </div>
+    <div
+        id='background-mobile'
+        class='animate fixed w-full h-full md:hidden'
+        style={{
+            backgroundImage: `linear-gradient(rgba(8,8,8,0.5), rgba(8,8,8,0.5)), url(${background_image_mobile.src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }}
+        data-bg-url={background_image_mobile.src}>
+    </div>
     <!-- HERO -->
     <section class='relative h-screen w-full'>
         <div class='animate absolute h-full w-full flex items-center justify-center'>
@@ -48,9 +53,9 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
     <div class='relative bg-white dark:bg-darkness md:pt-24 pt-6'>
         <div class='mx-auto flex flex-col md:gap-24 gap-8 items-center max-w-screen-lg p-5'>
             <!-- About Section -->
-            <section class='flex md:flex-row flex-col-reverse gap-4 md:gap-10'>
-                <div>
-                    <h2 class='md:text-2xl text-xl font-semibold md:mb-8 mb-3'>Velkommen til smia på Bogstad Gård</h2>
+            <section class='flex flex-col md:flex-row md:items-start gap-4 md:gap-10'>
+                <div class='w-full md:w-2/3'>
+                    <h2 class='text-xl md:text-2xl font-semibold mb-3 md:mb-8'>Velkommen til smia på Bogstad Gård</h2>
                     <div class='flex flex-col gap-1.5'>
                         <p>
                             Håkon Busk er smed på Bogstad Gård og har en Bachelor of Arts i kunstsmiing fra Hereford,
@@ -67,7 +72,15 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
                         </p>
                     </div>
                 </div>
-                <Image class='w-72 rounded-md' src={smie} alt={'Smie'} width={1920} height={1080} loading={'lazy'} />
+                <Image
+                    class='w-full max-w-80 md:w-1/3 rounded-md self-center'
+                    src={smie}
+                    alt={'Smie'}
+                    widths={[120, 240, 360, 480, 600]}
+                    quality={'mid'}
+                    sizes={'(max-width: 768px) 100vw, 50vw'}
+                    loading={'eager'}
+                />
             </section>
 
             <Divider className='opacity-30' />
@@ -79,25 +92,25 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
                         class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_venstre}
                         alt={'Skulptur'}
-                        width={1080}
-                        height={1618}
-                        loading={'lazy'}
+                        widths={[240, 360, 480, 600, 720]}
+                        quality={'mid'}
+                        loading={'eager'}
                     />
                     <Image
                         class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_midten}
                         alt={'Skulptur'}
-                        width={957}
-                        height={1388}
-                        loading={'lazy'}
+                        widths={[240, 360, 480, 600, 720]}
+                        quality={'mid'}
+                        loading={'eager'}
                     />
                     <Image
                         class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
                         src={bilde_hoyre}
                         alt={'Skulptur'}
-                        width={2777}
-                        height={4500}
-                        loading={'lazy'}
+                        widths={[240, 360, 480, 600, 720]}
+                        quality={'mid'}
+                        loading={'eager'}
                     />
                 </div>
                 <div
@@ -151,4 +164,40 @@ import bilde_hoyre from '../assets/images/index_right.jpg';
             </section>
         </div>
     </div>
+
+    <script>
+        function handleScroll() {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            const desktopBg = document.getElementById('background-desktop');
+            const mobileBg = document.getElementById('background-mobile');
+
+            // Adjust this value to make it become dark gray sooner (higher value = sooner)
+            const darkenFactor = 1.5;
+
+            // Calculate the additional darkness (0 = no additional darkness, 0.5 = fully dark gray)
+            const additionalDarkness = Math.min(0.5, (scrollPosition / windowHeight) * darkenFactor);
+
+            // Combine initial darkness (0.5) with additional darkness
+            const totalDarkness = 0.65 + additionalDarkness;
+
+            const gradient = `linear-gradient(rgba(8,8,8,${totalDarkness}), rgba(8,8,8,${totalDarkness}))`;
+
+            if (desktopBg) {
+                const bgUrl = desktopBg.getAttribute('data-bg-url');
+                desktopBg.style.backgroundImage = `${gradient}, url(${bgUrl})`;
+            }
+            if (mobileBg) {
+                const bgUrl = mobileBg.getAttribute('data-bg-url');
+                mobileBg.style.backgroundImage = `${gradient}, url(${bgUrl})`;
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+
+        // Initial call to set correct darkness on page load
+        handleScroll();
+    </script>
 </PageLayout>
