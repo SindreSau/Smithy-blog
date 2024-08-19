@@ -16,8 +16,9 @@ import smie from '../assets/images/hakon_smie.jpeg';
 import bilde_venstre from '../assets/images/index_left.jpeg';
 import bilde_midten from '../assets/images/index_center.jpeg';
 import bilde_hoyre from '../assets/images/index_right.jpg';
+import bilde_hoyre_2 from '../assets/images/bokstøtte.jpeg';
 
-const carouselImages = [bilde_venstre, bilde_midten, bilde_hoyre];
+const carouselImages = [bilde_venstre, bilde_hoyre_2, bilde_hoyre];
 ---
 
 <PageLayout title='Hjem' description={SITE.DESCRIPTION}>
@@ -143,10 +144,10 @@ const carouselImages = [bilde_venstre, bilde_midten, bilde_hoyre];
                     {
                         carouselImages.map((img, index) => (
                             <Image
-                                class='rounded-md object-cover md:h-[25rem] h-[18rem] img-zoom'
+                                class='rounded-md object-cover filter contrast-[0.9] md:h-[24rem] h-[18rem] img-zoom'
                                 src={img}
                                 alt={`Skulptur ${index + 1}`}
-                                widths={[240, 360, 480, 600, 720]}
+                                widths={[360, 480, 600, 720]}
                                 quality={'high'}
                                 loading={'eager'}
                             />
