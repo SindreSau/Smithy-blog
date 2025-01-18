@@ -2,7 +2,8 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel';
+import solidJs from '@astrojs/solid-js';
+import vercel from '@astrojs/vercel/serverless';
 import react from '@astrojs/react';
 
 // https://astro.build/config
@@ -11,19 +12,14 @@ export default defineConfig({
     integrations: [
         mdx(),
         sitemap(),
+        solidJs(),
         tailwind({
             applyBaseStyles: false,
         }),
         react(),
     ],
     output: 'server',
-    site: 'https://bogstadsmie.no',
-    image: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'images.ctfassets.net',
-            },
-        ],
-    },
+    adapter: vercel({
+        webAnalytics: { enabled: true },
+    }),
 });

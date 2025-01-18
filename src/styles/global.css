@@ -2,37 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    @font-face {
-        font-family: "CrimsonText";
-        src: url("public/fonts/CrimsonText-Regular.ttf") format("ttf");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: "CrimsonText";
-        src: url("/fonts/CrimsonText-Italic") format("ttf");
-        font-weight: 400;
-        font-style: italic;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: "CrimsonText";
-        src: url("/fonts/CrimsonText-Bold") format("ttf");
-        font-weight: 700;
-        font-style: normal;
-        font-display: swap;
-    }
-}
-
 html {
     overflow-y: scroll;
     color-scheme: light;
     background-color: white;
-    font-family: "CrimsonText", serif;
+    font-family: 'Crimson Text', serif;
 }
 
 html.dark {
@@ -43,7 +17,7 @@ html.dark {
 html,
 body {
     @apply h-full w-full antialiased;
-    @apply bg-white dark:bg-black;
+    @apply bg-white dark:bg-darkness;
     @apply text-black/75 dark:text-white/75;
     @apply text-lg;
 }
@@ -53,12 +27,16 @@ body {
 }
 
 main {
-    @apply flex flex-col flex-1 bg-white dark:bg-black;
+    @apply flex flex-col flex-1 bg-white dark:bg-darkness;
 }
 
 header {
     @apply border-b;
     @apply transition-all duration-300 ease-in-out;
+}
+
+p {
+    @apply text-black dark:text-neutral-300;
 }
 
 header:not(.scrolled) {
@@ -86,8 +64,8 @@ article {
 /** styles for public /animation.js */
 .animate {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
+    transform: translateY(30px);
+    transition: opacity 700ms ease, transform 700ms ease;
 }
 
 .animate.show {
@@ -101,6 +79,7 @@ article img {
     display: block;
     margin: 0 auto;
 }
+
 
 /* FOR HEADER LINKS */
 /* Should animate in a line under the link. The line should be as wide as the word in the link */
@@ -132,5 +111,17 @@ article img {
 
     &:link::after {
         width: 100%;
+    }
+}
+
+
+/* Hover effect for images. Zoom in on hover */
+img {
+    transition: transform 0.3s;
+}
+
+.img-zoom {
+    &:hover {
+        transform: scale(1.05);
     }
 }
