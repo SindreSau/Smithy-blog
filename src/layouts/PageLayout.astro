@@ -8,7 +8,6 @@ const { title, description } = Astro.props;
 import { SITE } from '@consts';
 
 import '@fontsource/crimson-text';
-import SpeedInsights from '@vercel/speed-insights/astro';
 ---
 
 <!doctype html>
@@ -17,7 +16,6 @@ import SpeedInsights from '@vercel/speed-insights/astro';
         <BaseHead title={`${title} | ${SITE.TITLE}`} description={description} />
     </head>
     <body>
-        <SpeedInsights />
         <Header />
         <Drawer />
         <main>
