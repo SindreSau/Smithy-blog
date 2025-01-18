@@ -1,14 +1,10 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import { SITE } from '@consts';
-import { Image } from 'astro:assets';
-
-// @ts-ignore
-import headshot_image from '../assets/images/headshot_v1.jpeg';
 ---
 
 <PageLayout title='Galleri' description={SITE.DESCRIPTION}>
-    <div class='md:gap-16 gap-8 md:pt-24 sm:pt-20 pt-8 container mx-auto'>
+    <div class='md:gap-16 gap-8 md:pt-24 sm:pt-20 pt-8 container mx-auto max-w-6xl'>
         <h1 class='text-3xl font-bold'>Galleri</h1>
     </div>
 </PageLayout>

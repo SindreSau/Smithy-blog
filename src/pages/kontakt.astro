@@ -8,8 +8,9 @@ import headshot_image from '../assets/images/headshot_v1.jpeg';
 ---
 
 <PageLayout title='Kontakt' description={SITE.DESCRIPTION}>
-    <div class='relative bg-white dark:bg-black my-auto mx-auto md:p-0 p-4 pt-8'>
-        <section class='flex lg:flex-row flex-col md:gap-16 gap-8 justify-center items-center max-w-screen-md'>
+    <div class='relative bg-white dark:bg-darkness mx-auto md:p-0 p-4 pt-8 mt-5'>
+        <section
+            class='flex lg:flex-row flex-col md:gap-16 gap-8 md:pt-20 sm:pt-10 pt-8 justify-center items-center max-w-screen-md animate'>
             <!-- Contact section -->
             <div class='animate'>
                 <div>
@@ -56,8 +57,9 @@ import headshot_image from '../assets/images/headshot_v1.jpeg';
                     class='rounded-lg md:w-80 w-64'
                     src={headshot_image}
                     alt='Smeden med arbeid'
-                    width={900}
-                    height={900}
+                    widths={[250, 420, 640]}
+                    quality={'mid'}
+                    loading={'eager'}
                 />
             </div>
         </section>
